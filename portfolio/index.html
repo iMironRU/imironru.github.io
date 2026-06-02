@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Александр Мирошниченко — портфолио</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #858F93;
+    --surface: rgba(255,255,255,0.13);
+    --solid: #7a8488;
+    --border: rgba(255,255,255,0.18);
+    --border-strong: rgba(255,255,255,0.35);
+    --text: #ffffff;
+    --muted: rgba(255,255,255,0.6);
+    --muted-dim: rgba(255,255,255,0.38);
+    --hover: rgba(255,255,255,0.22);
+  }
+  html, body { min-height: 100vh; background: var(--bg); color: var(--text); font-family: 'Mulish', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.5; }
+  .page { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 72px 24px 64px; }
+  .header { display: flex; flex-direction: column; align-items: center; gap: 18px; margin-bottom: 48px; animation: fadeUp 0.65s ease both; }
+  .avatar { width: 72px; height: 72px; border-radius: 50%; border: 1.5px solid var(--border); overflow: hidden; background: var(--solid); }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .brand { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .brand-logo { height: 26px; opacity: 0.9; }
+  .tagline { font-family: 'Unbounded', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px 28px; display: flex; align-items: center; gap: 20px; text-decoration: none; color: inherit; transition: background 0.2s, border-color 0.2s, transform 0.18s; position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.07), transparent 60%); opacity: 0; transition: opacity 0.25s; pointer-events: none; }
+  .card:hover { background: var(--hover); border-color: var(--border-strong); transform: translateY(-2px); }
+  .card:hover::before { opacity: 1; }
+  .icon-box { width: 50px; height: 50px; border-radius: 12px; background: rgba(0,0,0,0.12); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color 0.2s; }
+  .card:hover .icon-box { border-color: var(--border-strong); }
+  .icon-box svg { width: 22px; height: 22px; stroke: rgba(255,255,255,0.85); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .card-body { flex: 1; min-width: 0; }
+  .card-title { font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 400; color: #fff; margin-bottom: 5px; letter-spacing: 0.01em; line-height: 1.35; }
+  .card-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+  .card-meta { font-size: 11px; color: var(--muted-dim); font-family: monospace; margin-top: 6px; letter-spacing: 0.02em; }
+  .arrow { flex-shrink: 0; width: 30px; height: 30px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, background 0.2s; }
+  .card:hover .arrow { border-color: white; background: white; }
+  .arrow svg { width: 13px; height: 13px; stroke: var(--muted); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
+  .card:hover .arrow svg { stroke: var(--bg); }
+  .footer { margin-top: 56px; text-align: center; animation: fadeUp 0.65s 0.4s ease both; }
+  .footer a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
+  .footer a:hover { color: #fff; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 520px) { .card { padding: 18px; gap: 14px; } .arrow { display: none; } .page { padding: 52px 16px 52px; } }
+
+  .content { width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 48px; }
+
+  /* секция */
+  .section { display: flex; flex-direction: column; gap: 16px; animation: fadeUp 0.6s ease both; }
+  .section:nth-child(1) { animation-delay: 0.05s; }
+  .section:nth-child(2) { animation-delay: 0.12s; }
+  .section:nth-child(3) { animation-delay: 0.19s; }
+  .section:nth-child(4) { animation-delay: 0.26s; }
+  .section:nth-child(5) { animation-delay: 0.33s; }
+
+  .section-label {
+    font-family: 'Unbounded', sans-serif; font-size: 9px; font-weight: 400;
+    letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.5);
+  }
+
+  /* hero */
+  .hero { text-align: center; margin-bottom: 8px; animation: fadeUp 0.65s ease both; }
+  .hero-epigraph { font-family: 'Unbounded', sans-serif; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 10px; }
+  .hero-title { font-family: 'Unbounded', sans-serif; font-size: clamp(15px,3vw,20px); font-weight: 400; color: #fff; line-height: 1.5; }
+  .bio-p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.75; }
+  .bio-p + .bio-p { margin-top: 8px; }
+
+  /* project card */
+  .proj { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 22px 24px; display: flex; align-items: flex-start; gap: 16px; text-decoration: none; color: inherit; transition: background 0.2s, border-color 0.2s, transform 0.18s; }
+  .proj:hover { background: var(--hover); border-color: var(--border-strong); transform: translateY(-2px); }
+  .proj-body { flex: 1; min-width: 0; }
+  .proj-name { font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 400; color: #fff; margin-bottom: 5px; }
+  .proj-tagline { font-size: 12.5px; color: var(--muted); line-height: 1.55; margin-bottom: 8px; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .proj-tags span { background: rgba(0,0,0,0.15); border: 1px solid var(--border); border-radius: 20px; padding: 2px 9px; font-size: 10.5px; color: var(--muted); font-family: 'Unbounded', sans-serif; letter-spacing: 0.04em; }
+
+  /* skills */
+  .skills-grid { display: flex; flex-direction: column; gap: 12px; }
+  .skill-row { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 18px; }
+  .skill-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .skill-name { font-family: 'Unbounded', sans-serif; font-size: 11px; font-weight: 400; color: #fff; letter-spacing: 0.03em; }
+  .skill-level { font-size: 10px; color: var(--muted-dim); font-family: 'Unbounded', sans-serif; letter-spacing: 0.05em; margin-left: auto; }
+  .skill-kw { display: flex; flex-wrap: wrap; gap: 5px; }
+  .skill-kw span { background: rgba(0,0,0,0.12); border-radius: 20px; padding: 3px 9px; font-size: 11px; color: rgba(255,255,255,0.55); }
+  .skill-note { font-size: 11px; color: var(--muted-dim); margin-top: 6px; font-style: italic; }
+
+  /* cases */
+  .case { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px; }
+  .case-title { font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 400; color: #fff; line-height: 1.4; }
+  .case-meta { font-size: 11px; color: var(--muted-dim); font-family: monospace; letter-spacing: 0.03em; }
+  .case-row { font-size: 12.5px; color: rgba(255,255,255,0.6); line-height: 1.65; }
+  .case-row b { color: rgba(255,255,255,0.8); font-weight: 600; }
+  .case-lesson { background: rgba(0,0,0,0.15); border-left: 2px solid rgba(255,255,255,0.3); padding: 8px 12px; font-size: 12px; color: var(--muted); line-height: 1.6; border-radius: 0 8px 8px 0; }
+
+  /* contacts */
+  .contact-list { display: flex; flex-direction: column; gap: 10px; }
+  .contact-item { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: inherit; transition: background 0.2s, border-color 0.2s; }
+  .contact-item:hover { background: var(--hover); border-color: var(--border-strong); }
+  .contact-label { font-family: 'Unbounded', sans-serif; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+  .contact-val { font-size: 13px; color: #fff; }
+
+  @media (max-width: 520px) { .proj { padding: 16px 18px; } .case { padding: 16px 18px; } .page { padding: 52px 16px 52px; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  
+  <header class="header">
+    <div class="avatar">
+      <img src="https://imiron.ru/images/foto.svg" alt="Miron" onerror="this.style.display='none'">
+    </div>
+    <div class="brand">
+      <img class="brand-logo" src="https://imiron.ru/images/title.svg" alt="iMiron"
+           onerror="this.outerHTML='<span style=\'font-family:Unbounded,sans-serif;font-size:18px;font-weight:400;letter-spacing:0.05em\'>iMiron</span>'">
+      <span class="tagline">портфолио</span>
+    </div>
+  </header>
+
+
+  <div class="content">
+
+    <div class="section">
+      <div class="hero">
+        <div class="hero-epigraph">«Доктором я не стал — зато научился кодить и учить.»</div>
+        <div class="hero-title">Архитектор для нерешаемого. Ментор для тех, кто хочет так же.</div>
+      </div>
+      <p class="bio-p">Архитектор и бизнес-аналитик, в 1С с 1999 года — от 7.7 до 8.5. Двадцать пять лет автоматизирую сложный бизнес: розница, дистрибуция, банки, стартапы, кадры. Специализируюсь на задачах, за которые не берутся другие. Последние десять лет систематизирую управление образовательными организациями: автор открытого отраслевого фреймворка **edu-framework** и архитектор ИС **Универкон** на платформе 1С. Преподаю разработку на 1С, пишу учебные материалы. Ай-ти-поп — но проповеди у меня практические.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-label">/ проекты</div>
+      
+  <a class="proj" href="https://github.com/iMironRU/edu-framework" target="_blank" rel="noopener">
+    <div class="proj-body">
+      <div class="proj-name">edu-framework</div>
+      <div class="proj-tagline">Открытый отраслевой стандарт управления образовательной организацией РФ</div>
+      <div class="proj-tags"><span>методология</span><span>образование</span><span>open-source</span><span>JSON Schema</span><span>ФГОС</span></div>
+    </div>
+    <div class="arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+  </a>
+  <a class="proj" href="https://github.com/iMironRU/framework.univercon.aplicon.ru" target="_blank" rel="noopener">
+    <div class="proj-body">
+      <div class="proj-name">Универкон</div>
+      <div class="proj-tagline">Информационная система управления образовательной организацией на 1С</div>
+      <div class="proj-tags"><span>1С</span><span>образование</span><span>ИС</span><span>автоматизация</span></div>
+    </div>
+    <div class="arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+  </a>
+  <a class="proj" href="https://github.com/iMironRU/what-happens-when-click-1c" target="_blank" rel="noopener">
+    <div class="proj-body">
+      <div class="proj-name">what-happens-when-click-1c</div>
+      <div class="proj-tagline">Что происходит, когда ты кликаешь в 1С</div>
+      <div class="proj-tags"><span>образовательный контент</span><span>1С</span><span>лонгрид</span></div>
+    </div>
+    <div class="arrow"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+  </a>
+    </div>
+
+    <div class="section">
+      <div class="section-label">/ стек и экспертиза</div>
+      <div class="skills-grid">
+  <div class="skill-row">
+    <div class="skill-head">
+      <span class="skill-name">Платформа 1С</span>
+      <span class="skill-level">Эксперт</span>
+    </div>
+    <div class="skill-kw"><span>1С:Предприятие 7.7–8.5</span><span>BSL</span><span>конфигурации</span><span>расширения</span><span>интеграции</span><span>обмены данными</span><span>БСП</span></div>
+    
+  </div>
+  <div class="skill-row">
+    <div class="skill-head">
+      <span class="skill-name">Продуктовый минимум для быстрого старта</span>
+      <span class="skill-level">Рабочий</span>
+    </div>
+    <div class="skill-kw"><span>1С</span><span>Node.js</span><span>React</span></div>
+    <div class="skill-note">Осознанный минимум для прототипа и интеграции</div>
+  </div>
+  <div class="skill-row">
+    <div class="skill-head">
+      <span class="skill-name">СУБД и инфраструктура</span>
+      <span class="skill-level">Продвинутый</span>
+    </div>
+    <div class="skill-kw"><span>MS SQL</span><span>репликация</span><span>Active Directory</span><span>Linux</span><span>Nginx</span><span>Apache</span><span>Docker</span></div>
+    
+  </div>
+  <div class="skill-row">
+    <div class="skill-head">
+      <span class="skill-name">Веб и интеграции</span>
+      <span class="skill-level">Рабочий</span>
+    </div>
+    <div class="skill-kw"><span>HTML</span><span>JavaScript</span><span>PHP</span><span>REST</span><span>HTTP-сервисы</span></div>
+    
+  </div>
+  <div class="skill-row">
+    <div class="skill-head">
+      <span class="skill-name">Автоматизация и инструменты</span>
+      <span class="skill-level">Рабочий</span>
+    </div>
+    <div class="skill-kw"><span>Bash</span><span>PowerShell</span><span>Python</span><span>Git</span></div>
+    
+  </div>
+  <div class="skill-row">
+    <div class="skill-head">
+      <span class="skill-name">Бизнес-анализ и управление</span>
+      <span class="skill-level">Эксперт</span>
+    </div>
+    <div class="skill-kw"><span>бизнес-анализ</span><span>постановка задач</span><span>ТЗ и ТЭО</span><span>управление ИТ-проектами</span><span>бухгалтерский учёт</span></div>
+    
+  </div>
+  <div class="skill-row">
+    <div class="skill-head">
+      <span class="skill-name">Образование и методология</span>
+      <span class="skill-level">Эксперт</span>
+    </div>
+    <div class="skill-kw"><span>методология управления ОО</span><span>edu-framework</span><span>преподавание 1С</span><span>учебные материалы</span></div>
+    
+  </div>
+  <div class="skill-row">
+    <div class="skill-head">
+      <span class="skill-name">Из прошлого</span>
+      <span class="skill-level">Подзабыто</span>
+    </div>
+    <div class="skill-kw"><span>Бейсик</span><span>Си</span><span>С++</span></div>
+    <div class="skill-note">То, с чего всё началось — ПК-8000, 386-й</div>
+  </div></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">/ кейсы</div>
+      
+  <div class="case">
+    <div class="case-title">Сбой репликации MS SQL по 2G</div>
+    <div class="case-meta">Кредитное агентство (Оренбургская область) · конец 2000-х</div>
+    <div class="case-row"><b>Задача:</b> Потерялись квитанции о получении данных от периферийных баз. Центральная база считала данные недошедшими и наращивала объём повторной отправки — трафик и счета за интернет росли лавинообразно.</div>
+    <div class="case-row"><b>Ограничение:</b> Около 50 точек по области на 2G-каналах. Классический путь «свернуть и развернуть репликацию» невозможен: инициализация одной точки занимала более суток — на всю сеть это недели простоя. Бизнес работал с 8 до 20, остановить всё разом нельзя.</div>
+    <div class="case-row"><b>Решение:</b> Несколько месяцев методичного чтения журналов репликации. Нашли единственную сбойную запись, блокировавшую штатный обмен, и точечно убрали её.</div>
+    <div class="case-row"><b>Итог:</b> Ни одна точка не переинициализирована, бизнес не остановился ни на день.</div>
+    <div class="case-lesson">Вместо «снести и сделать заново» — найти точку сбоя и вылечить там. Медленнее, но безопаснее.</div>
+  </div>
+  <div class="case">
+    <div class="case-title">Мобильное приложение на 1С для фотографа</div>
+    <div class="case-meta">Хейфуд — стартап доставки из «Метро» · 2017–2018</div>
+    <div class="case-row"><b>Задача:</b> Каталог ~3000 товаров. Фотограф снимал день, затем ассистент вручную сопоставлял каждый кадр с артикулом — путались, переснимали, теряли время.</div>
+    <div class="case-row"><b>Ограничение:</b> MVP-стадия стартапа, нужен быстрый старт без отдельного мобильного стека.</div>
+    <div class="case-row"><b>Решение:</b> Мобильное приложение на 1С: загрузка очереди штрих-кодов, сканирование товара, привязка номера кадра к артикулу. 1С выбран потому, что учётная база (артикулы, штрих-коды, продажи) уже была — самый быстрый путь к MVP. Начал писать сам, дописывала и отлаживала стажёр.</div>
+    <div class="case-row"><b>Итог:</b> Каталог на сайте стал наполняться в разы быстрее; решения хватило на всю фазу роста.</div>
+    <div class="case-lesson">Нестандартное использование 1С как мобильной платформы выглядело костылём, а оказалось рабочим MVP-решением.</div>
+  </div>
+  <div class="case">
+    <div class="case-title">Система тестирования студентов</div>
+    <div class="case-meta">Кафедра нормальной физиологии (вуз) · конец 1990-х → работает по сей день</div>
+    <div class="case-row"><b>Задача:</b> Тестирование на бумаге. Нужно организовать электронную сдачу — и удержать честность: студенты систематически пытались обойти систему.</div>
+    <div class="case-row"><b>Ограничение:</b> Компьютерный класс на 15 машин, ранние платформы, реальное противодействие пользователей.</div>
+    <div class="case-row"><b>Решение:</b> Развернули 1С:Экзаменатор. Заходили друг за друга — ввели бумажный журнал на входе. Ходили парами, решая за соседа — ввели схему посадки и личную авторизацию. Сделал отчёты и загрузку тестов из Excel.</div>
+    <div class="case-row"><b>Итог:</b> Система работает на кафедре десятилетиями без участия автора. Позже в других подразделениях вуза внедрён 1С:Корпоративный университет, включая приём вступительных экзаменов.</div>
+    <div class="case-lesson">Точка входа в автоматизацию образования. То, что построено правильно, переживает автора.</div>
+  </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">/ контакты</div>
+      <div class="contact-list">
+  <a class="contact-item" href="mailto:imiron.ru@ya.ru" target="_blank" rel="noopener">
+    <span class="contact-label">Почта</span>
+    <span class="contact-val">imiron.ru@ya.ru</span>
+  </a>
+  <a class="contact-item" href="https://t.me/iMironRU" target="_blank" rel="noopener">
+    <span class="contact-label">Telegram для связи</span>
+    <span class="contact-val">@iMironRU</span>
+  </a>
+  <a class="contact-item" href="https://t.me/blog_imiron" target="_blank" rel="noopener">
+    <span class="contact-label">Telegram-канал</span>
+    <span class="contact-val">@blog_imiron</span>
+  </a>
+  <a class="contact-item" href="https://imiron.ru" target="_blank" rel="noopener">
+    <span class="contact-label">Сайт</span>
+    <span class="contact-val">Сайт</span>
+  </a>
+  <a class="contact-item" href="https://github.com/iMironRU" target="_blank" rel="noopener">
+    <span class="contact-label">GitHub</span>
+    <span class="contact-val">iMironRU</span>
+  </a></div>
+    </div>
+
+  </div>
+
+  
+  <footer class="footer">
+    <a href="https://imiron.ru">← imiron.ru</a>
+  </footer>
+
+
+</div>
+</body>
+</html>
