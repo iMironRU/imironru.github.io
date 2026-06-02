@@ -1,5 +1,154 @@
 <!doctype html>
 <html lang="ru">
-<head><meta charset="utf-8"><title>iMironRU</title></head>
-<body><h1>iMironRU</h1><p>Тут скоро будет хаб проектов.</p></body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Александр Мирошниченко — Архитектор для нерешаемого. Ментор для тех, кто хочет так же.</title>
+  <meta name="description" content="Архитектор сложных систем и наставник.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font: 16px/1.6 -apple-system, Segoe UI, Roboto, sans-serif; max-width: 860px; margin: 0 auto; padding: 24px 20px; color: #1a1a1a; }
+    a { color: #0969da; }
+    h1 { margin-bottom: 4px; font-size: 2rem; }
+    h2 { margin-top: 48px; border-bottom: 2px solid #eee; padding-bottom: 6px; }
+    .epigraph { color: #555; font-style: italic; margin: 4px 0 8px; }
+    .portrait { font-size: 1.1rem; color: #333; margin-bottom: 24px; }
+
+    .card, .case { border: 1px solid #e1e4e8; border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+    .card h3, .case h3 { margin: 0 0 6px; }
+    .tagline { color: #555; margin: 0 0 8px; font-style: italic; }
+    .meta { color: #888; font-size: 0.9rem; margin: 0 0 10px; }
+    .lesson { background: #f6f8fa; border-left: 3px solid #0969da; padding: 8px 12px; margin-top: 10px; }
+    .tags span, .keywords span { display: inline-block; background: #f0f3f6; border-radius: 4px; padding: 2px 7px; font-size: 0.82rem; margin: 2px 2px 0 0; }
+    .skill-group { margin: 12px 0; }
+    .skill-group.primary strong { font-size: 1.05rem; }
+    .level { color: #888; font-size: 0.85rem; margin-left: 6px; }
+    .note { color: #888; font-size: 0.88rem; margin: 4px 0 0; }
+    ul { padding-left: 20px; }
+    footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid #eee; color: #888; font-size: 0.88rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Александр Мирошниченко</h1>
+  <p class="epigraph">«Доктором я не стал — зато научился учить.»</p>
+  <p class="portrait">Архитектор для нерешаемого. Ментор для тех, кто хочет так же.</p>
+</header>
+
+<section id="about">
+  <p>Архитектор и бизнес-аналитик, в 1С с 1999 года — от 7.7 до 8.5. Двадцать пять лет автоматизирую сложный бизнес: розница, дистрибуция, банки, стартапы, кадры. Специализируюсь на задачах, за которые не берутся другие. Последние десять лет систематизирую управление образовательными организациями: автор открытого отраслевого фреймворка **edu-framework** и архитектор ИС **Универкон** на платформе 1С. Преподаю разработку на 1С, пишу учебные материалы. Ай-ти-поп — но проповеди у меня практические.</p>
+</section>
+
+<section id="projects">
+  <h2>Проекты</h2>
+  
+  <article class="card">
+    <h3><a href="https://github.com/iMironRU/edu-framework">edu-framework</a></h3>
+    <p class="tagline">Открытый отраслевой стандарт управления образовательной организацией РФ</p>
+    <p>Открытый платформенно-независимый фреймворк соответствия для российских образовательных организаций. 13 доменов, охват ВУЗ / СПО / ДО / ДПО / аспирантуры, машиночитаемые НПА (ФГОС, ФЗ-273) в JSON.</p>
+    <p class="tags"><span>методология</span> <span>образование</span> <span>open-source</span> <span>JSON Schema</span> <span>ФГОС</span></p>
+  </article>
+  <article class="card">
+    <h3><a href="https://github.com/iMironRU/framework.univercon.aplicon.ru">Универкон</a></h3>
+    <p class="tagline">Информационная система управления образовательной организацией на 1С</p>
+    <p>Реализация edu-framework как ИС на платформе 1С. Стадия MVP: проектирование и подготовка к конвертации данных в первом пилотном вузе.</p>
+    <p class="tags"><span>1С</span> <span>образование</span> <span>ИС</span> <span>автоматизация</span></p>
+  </article>
+  <article class="card">
+    <h3><a href="https://github.com/iMironRU/what-happens-when-click-1c">what-happens-when-click-1c</a></h3>
+    <p class="tagline">Что происходит, когда ты кликаешь в 1С</p>
+    <p>Технический лонгрид о внутреннем устройстве платформы 1С — в духе what-happens-when Алекса Гейнора, для разработчиков, переходящих с других стеков.</p>
+    <p class="tags"><span>образовательный контент</span> <span>1С</span> <span>лонгрид</span></p>
+  </article>
+</section>
+
+<section id="skills">
+  <h2>Стек и экспертиза</h2>
+  
+  <div class="skill-group primary">
+    <strong>Платформа 1С</strong> <span class="level">Эксперт</span>
+    <div class="keywords"><span>1С:Предприятие 7.7–8.5</span> <span>BSL</span> <span>конфигурации</span> <span>расширения</span> <span>интеграции</span> <span>обмены данными</span> <span>БСП</span></div>
+    
+  </div>
+  <div class="skill-group">
+    <strong>Продуктовый минимум для быстрого старта</strong> <span class="level">Рабочий</span>
+    <div class="keywords"><span>1С</span> <span>Node.js</span> <span>React</span></div>
+    <p class="note">Осознанный минимум для прототипа и интеграции</p>
+  </div>
+  <div class="skill-group">
+    <strong>СУБД и инфраструктура</strong> <span class="level">Продвинутый</span>
+    <div class="keywords"><span>MS SQL</span> <span>репликация</span> <span>Active Directory</span> <span>Linux</span> <span>Nginx</span> <span>Apache</span> <span>Docker</span></div>
+    
+  </div>
+  <div class="skill-group">
+    <strong>Веб и интеграции</strong> <span class="level">Рабочий</span>
+    <div class="keywords"><span>HTML</span> <span>JavaScript</span> <span>PHP</span> <span>REST</span> <span>HTTP-сервисы</span></div>
+    
+  </div>
+  <div class="skill-group">
+    <strong>Автоматизация и инструменты</strong> <span class="level">Рабочий</span>
+    <div class="keywords"><span>Bash</span> <span>PowerShell</span> <span>Python</span> <span>Git</span></div>
+    
+  </div>
+  <div class="skill-group">
+    <strong>Бизнес-анализ и управление</strong> <span class="level">Эксперт</span>
+    <div class="keywords"><span>бизнес-анализ</span> <span>постановка задач</span> <span>ТЗ и ТЭО</span> <span>управление ИТ-проектами</span> <span>бухгалтерский учёт</span></div>
+    
+  </div>
+  <div class="skill-group">
+    <strong>Образование и методология</strong> <span class="level">Эксперт</span>
+    <div class="keywords"><span>методология управления ОО</span> <span>edu-framework</span> <span>преподавание 1С</span> <span>учебные материалы</span></div>
+    
+  </div>
+  <div class="skill-group">
+    <strong>Из прошлого</strong> <span class="level">Подзабыто</span>
+    <div class="keywords"><span>Бейсик</span> <span>Си</span> <span>С++</span></div>
+    <p class="note">То, с чего всё началось — ПК-8000, 386-й</p>
+  </div>
+</section>
+
+<section id="cases">
+  <h2>Кейсы</h2>
+  
+  <article class="case">
+    <h3>Сбой репликации MS SQL по 2G</h3>
+    <p class="meta">Кредитное агентство (Оренбургская область) · конец 2000-х</p>
+    <p><strong>Задача:</strong> Потерялись квитанции о получении данных от периферийных баз. Центральная база считала данные недошедшими и наращивала объём повторной отправки — трафик и счета за интернет росли лавинообразно.</p>
+    <p><strong>Ограничение:</strong> Около 50 точек по области на 2G-каналах. Классический путь «свернуть и развернуть репликацию» невозможен: инициализация одной точки занимала более суток — на всю сеть это недели простоя. Бизнес работал с 8 до 20, остановить всё разом нельзя.</p>
+    <p><strong>Решение:</strong> Несколько месяцев методичного чтения журналов репликации. Нашли единственную сбойную запись, блокировавшую штатный обмен, и точечно убрали её.</p>
+    <p><strong>Итог:</strong> Ни одна точка не переинициализирована, бизнес не остановился ни на день.</p>
+    <p class="lesson">💡 Вместо «снести и сделать заново» — найти точку сбоя и вылечить там. Медленнее, но безопаснее.</p>
+  </article>
+  <article class="case">
+    <h3>Мобильное приложение на 1С для фотографа</h3>
+    <p class="meta">Хейфуд — стартап доставки из «Метро» · 2017–2018</p>
+    <p><strong>Задача:</strong> Каталог ~3000 товаров. Фотограф снимал день, затем ассистент вручную сопоставлял каждый кадр с артикулом — путались, переснимали, теряли время.</p>
+    <p><strong>Ограничение:</strong> MVP-стадия стартапа, нужен быстрый старт без отдельного мобильного стека.</p>
+    <p><strong>Решение:</strong> Мобильное приложение на 1С: загрузка очереди штрих-кодов, сканирование товара, привязка номера кадра к артикулу. 1С выбран потому, что учётная база (артикулы, штрих-коды, продажи) уже была — самый быстрый путь к MVP. Начал писать сам, дописывала и отлаживала стажёр.</p>
+    <p><strong>Итог:</strong> Каталог на сайте стал наполняться в разы быстрее; решения хватило на всю фазу роста.</p>
+    <p class="lesson">💡 Нестандартное использование 1С как мобильной платформы выглядело костылём, а оказалось рабочим MVP-решением.</p>
+  </article>
+  <article class="case">
+    <h3>Система тестирования студентов</h3>
+    <p class="meta">Кафедра нормальной физиологии (вуз) · конец 1990-х → работает по сей день</p>
+    <p><strong>Задача:</strong> Тестирование на бумаге. Нужно организовать электронную сдачу — и удержать честность: студенты систематически пытались обойти систему.</p>
+    <p><strong>Ограничение:</strong> Компьютерный класс на 15 машин, ранние платформы, реальное противодействие пользователей.</p>
+    <p><strong>Решение:</strong> Развернули 1С:Экзаменатор. Заходили друг за друга — ввели бумажный журнал на входе. Ходили парами, решая за соседа — ввели схему посадки и личную авторизацию. Сделал отчёты и загрузку тестов из Excel.</p>
+    <p><strong>Итог:</strong> Система работает на кафедре десятилетиями без участия автора. Позже в других подразделениях вуза внедрён 1С:Корпоративный университет, включая приём вступительных экзаменов.</p>
+    <p class="lesson">💡 Точка входа в автоматизацию образования. То, что построено правильно, переживает автора.</p>
+  </article>
+</section>
+
+<section id="contacts">
+  <h2>Контакты</h2>
+  <ul><li>Почта: imiron.ru@ya.ru</li><li>Telegram для связи: <a href="https://t.me/iMironRU">@iMironRU</a></li><li>Telegram-канал: <a href="https://t.me/blog_imiron">@blog_imiron</a></li><li>Сайт: <a href="https://imiron.ru">Сайт</a></li><li>GitHub: <a href="https://github.com/iMironRU">iMironRU</a></li></ul>
+  
+</section>
+
+<footer>
+  <p>Собрано из <a href="https://github.com/iMironRU/imiron-brand">imiron-brand</a></p>
+</footer>
+
+</body>
 </html>
