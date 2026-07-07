@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Книги — iMiron</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #858F93;
+    --surface: rgba(255,255,255,0.13);
+    --solid: #7a8488;
+    --border: rgba(255,255,255,0.18);
+    --border-strong: rgba(255,255,255,0.35);
+    --text: #ffffff;
+    --muted: rgba(255,255,255,0.6);
+    --muted-dim: rgba(255,255,255,0.38);
+    --hover: rgba(255,255,255,0.22);
+  }
+  html, body { min-height: 100vh; background: var(--bg); color: var(--text); font-family: 'Mulish', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.5; }
+  .page { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 72px 24px 64px; }
+  .header { display: flex; flex-direction: column; align-items: center; gap: 18px; margin-bottom: 48px; animation: fadeUp 0.65s ease both; }
+  .avatar { width: 72px; height: 72px; border-radius: 50%; border: 1.5px solid var(--border); overflow: hidden; background: var(--solid); }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .brand { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .brand-logo { height: 26px; opacity: 0.9; }
+  .tagline { font-family: 'Unbounded', sans-serif; font-size: 9px; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 24px 28px; display: flex; align-items: center; gap: 20px; text-decoration: none; color: inherit; transition: background 0.2s, border-color 0.2s, transform 0.18s; position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.07), transparent 60%); opacity: 0; transition: opacity 0.25s; pointer-events: none; }
+  .card:hover { background: var(--hover); border-color: var(--border-strong); transform: translateY(-2px); }
+  .card:hover::before { opacity: 1; }
+  .icon-box { width: 50px; height: 50px; border-radius: 12px; background: rgba(0,0,0,0.12); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color 0.2s; }
+  .card:hover .icon-box { border-color: var(--border-strong); }
+  .icon-box svg { width: 22px; height: 22px; stroke: rgba(255,255,255,0.85); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .card-body { flex: 1; min-width: 0; }
+  .card-title { font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 400; color: #fff; margin-bottom: 5px; letter-spacing: 0.01em; line-height: 1.35; }
+  .card-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+  .card-meta { font-size: 11px; color: var(--muted-dim); font-family: monospace; margin-top: 6px; letter-spacing: 0.02em; }
+  .arrow { flex-shrink: 0; width: 30px; height: 30px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, background 0.2s; }
+  .card:hover .arrow { border-color: white; background: white; }
+  .arrow svg { width: 13px; height: 13px; stroke: var(--muted); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.2s; }
+  .card:hover .arrow svg { stroke: var(--bg); }
+  .footer { margin-top: 56px; text-align: center; animation: fadeUp 0.65s 0.4s ease both; }
+  .footer a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
+  .footer a:hover { color: #fff; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 520px) { .card { padding: 18px; gap: 14px; } .arrow { display: none; } .page { padding: 52px 16px 52px; } }
+
+  .section-head { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 40px; animation: fadeUp 0.65s 0.08s ease both; }
+  .section-label { font-family: 'Unbounded', sans-serif; font-size: 9px; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.9); }
+  .section-title { font-family: 'Unbounded', sans-serif; font-size: 22px; font-weight: 400; color: #fff; letter-spacing: 0.01em; }
+  .books { width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 20px; }
+  .book { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 28px 28px 22px; display: flex; flex-direction: column; gap: 16px; transition: background 0.25s, border-color 0.25s, transform 0.2s; animation: fadeUp 0.6s ease both; }
+  .book:hover { background: var(--hover); border-color: var(--border-strong); transform: translateY(-2px); }
+  .book-top { display: flex; gap: 18px; align-items: flex-start; }
+  .book-num { font-family: 'Unbounded', sans-serif; font-size: 11px; font-weight: 300; color: var(--muted-dim); letter-spacing: 0.05em; min-width: 24px; padding-top: 3px; }
+  .book-meta { flex: 1; min-width: 0; }
+  .book-title { font-family: 'Unbounded', sans-serif; font-size: 15px; font-weight: 400; color: #fff; line-height: 1.4; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .book-status { display: inline-flex; align-items: center; font-family: 'Mulish', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 40px; border: 1px solid var(--border); color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
+  .book-status--wip { color: #ffd479; border-color: rgba(255,212,121,0.4); background: rgba(255,212,121,0.08); }
+  .book-status--draft { color: rgba(255,255,255,0.55); }
+  .book-status--published { color: #9be29b; border-color: rgba(155,226,155,0.4); background: rgba(155,226,155,0.08); }
+  .book-author { font-size: 13px; color: var(--muted); letter-spacing: 0.02em; margin-bottom: 10px; }
+  .book-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.65; }
+  .book-stores { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px; padding-left: 42px; }
+  .store-btn { display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.12); border: 1px solid var(--border); border-radius: 40px; padding: 7px 14px; font-family: 'Mulish', sans-serif; font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.8); text-decoration: none; letter-spacing: 0.02em; transition: background 0.2s, border-color 0.2s, color 0.2s; white-space: nowrap; }
+  .store-btn:hover { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.5); color: #fff; }
+  .store-btn svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.7; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .store-btn:hover svg { opacity: 1; }
+  @media (max-width: 520px) { .book { padding: 20px 18px 18px; } .book-top { gap: 12px; } .book-stores { padding-left: 0; } .section-title { font-size: 18px; } .page { padding: 56px 16px 56px; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  
+  <header class="header">
+    <div class="avatar">
+      <img src="https://imiron.ru/images/foto.svg" alt="Miron" onerror="this.style.display='none'">
+    </div>
+    <div class="brand">
+      <img class="brand-logo" src="https://imiron.ru/images/title.svg" alt="iMiron"
+           onerror="this.outerHTML='<span style=\'font-family:Unbounded,sans-serif;font-size:18px;font-weight:400;letter-spacing:0.05em\'>iMiron</span>'">
+      <span class="tagline">книги и материалы</span>
+    </div>
+  </header>
+
+
+  
+  <div class="section-head">
+    <span class="section-label">/ own</span>
+    <h1 class="section-title">Пишу</h1>
+  </div>
+  <div class="books">
+  <article class="book" style="animation-delay:0.1s">
+    <div class="book-top">
+      <span class="book-num">01</span>
+      <div class="book-meta">
+        <div class="book-title">Дерево метаданных 1С<span class="book-status book-status--wip">в работе</span></div>
+        <div class="book-author">Александр Мирошниченко</div>
+        <div class="book-desc">Книга-учебник для новичков: учимся читать дерево метаданных 1С без программирования, понимать бизнес-логику конфигураций и проектировать свои. Сквозной пример — фирма «Канцтовары».</div>
+      </div>
+    </div>
+    <div class="book-stores"><a class="store-btn" href="https://github.com/iMironRU/1c-metadata-tree-book" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Репозиторий</a></div>
+  </article>
+  <article class="book" style="animation-delay:0.2s">
+    <div class="book-top">
+      <span class="book-num">02</span>
+      <div class="book-meta">
+        <div class="book-title">Чтение данных. Язык запросов 1С<span class="book-status book-status--wip">в работе</span></div>
+        <div class="book-author">Александр Мирошниченко</div>
+        <div class="book-desc">Вторая книга серии. Как читать данные на платформе 1С — от простых выборок до сложных запросов с пакетами, временными таблицами и виртуальными таблицами регистров.</div>
+      </div>
+    </div>
+    <div class="book-stores"><a class="store-btn" href="https://github.com/iMironRU/chtenie-dannyh-zaprosy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Репозиторий</a></div>
+  </article>
+  <article class="book" style="animation-delay:0.30000000000000004s">
+    <div class="book-top">
+      <span class="book-num">03</span>
+      <div class="book-meta">
+        <div class="book-title">Чтение форм 1С<span class="book-status book-status--draft">черновик</span></div>
+        <div class="book-author">Александр Мирошниченко</div>
+        <div class="book-desc">Третья книга трилогии «Чтение 1С» — про управляемые формы, командный интерфейс и чтение интерфейса как разговора системы с пользователем. Сквозной пример — фирма «Канцтовары».</div>
+      </div>
+    </div>
+    <div class="book-stores"><a class="store-btn" href="https://github.com/iMironRU/1c-forms-reading" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Репозиторий</a></div>
+  </article>
+  <article class="book" style="animation-delay:0.4s">
+    <div class="book-top">
+      <span class="book-num">04</span>
+      <div class="book-meta">
+        <div class="book-title">1С как иностранный язык<span class="book-status book-status--draft">черновик</span></div>
+        <div class="book-author">Александр Мирошниченко</div>
+        <div class="book-desc">Учимся читать код 1С осмысленно, а не как набор синтаксиса. Новый подход к пониманию платформы для тех, кто пришёл с других стеков.</div>
+      </div>
+    </div>
+    <div class="book-stores"><a class="store-btn" href="https://github.com/iMironRU/1c-semantic-reading" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Репозиторий</a></div>
+  </article>
+  <article class="book" style="animation-delay:0.5s">
+    <div class="book-top">
+      <span class="book-num">05</span>
+      <div class="book-meta">
+        <div class="book-title">1С-разговорник<span class="book-status book-status--wip">в работе</span></div>
+        <div class="book-author">Александр Мирошниченко</div>
+        <div class="book-desc">Сравнительный справочник синтаксиса и архитектуры 1С для разработчиков с опытом в Python, JavaScript или C#. Параллельные примеры: «вот так на 1С — вот так на привычном языке».</div>
+      </div>
+    </div>
+    <div class="book-stores"><a class="store-btn" href="https://github.com/iMironRU/1c-razgovornik" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Репозиторий</a></div>
+  </article>
+  <article class="book" style="animation-delay:0.6s">
+    <div class="book-top">
+      <span class="book-num">06</span>
+      <div class="book-meta">
+        <div class="book-title">Установка 1С:Предприятие<span class="book-status book-status--wip">в работе</span></div>
+        <div class="book-author">Александр Мирошниченко</div>
+        <div class="book-desc">Пошаговое руководство по установке платформы 1С:Предприятие — для тех, кто впервые ставит её на свой компьютер или сервер.</div>
+      </div>
+    </div>
+    <div class="book-stores"><a class="store-btn" href="https://github.com/iMironRU/install-1c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Репозиторий</a></div>
+  </article>
+  <article class="book" style="animation-delay:0.7000000000000001s">
+    <div class="book-top">
+      <span class="book-num">07</span>
+      <div class="book-meta">
+        <div class="book-title">Что происходит, когда ты кликаешь в 1С<span class="book-status book-status--wip">в работе</span></div>
+        <div class="book-author">Александр Мирошниченко</div>
+        <div class="book-desc">Технический лонгрид о внутреннем устройстве платформы 1С — в духе what-happens-when Алекса Гейнора, для разработчиков, переходящих с других стеков. Готовы части 0, I, II, III, IV; части V–IX в работе.</div>
+      </div>
+    </div>
+    <div class="book-stores"><a class="store-btn" href="https://github.com/iMironRU/what-happens-when-click-1c" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Репозиторий</a></div>
+  </article></div>
+  
+
+  <div class="section-head" style="margin-top: 56px;">
+    <span class="section-label">/ books</span>
+    <h1 class="section-title">Читаю и советую</h1>
+  </div>
+
+  <div class="books">
+  <article class="book" style="animation-delay:0.1s">
+    <div class="book-top">
+      <span class="book-num">01</span>
+      <div class="book-meta">
+        <div class="book-title">Проектное управление: как правильно делать правильные вещи</div>
+        <div class="book-author">Павел Алфёров</div>
+        <div class="book-desc">«Деловая книга года 2025». 6 принципов, 10 постулатов и 20 правил проектного управления на примерах из российской практики — от ТНК-BP и «Альфа-Групп» до Оргкомитета «Сочи-2014». Выросла из курса автора в бизнес-школе «Сколково».</div>
+      </div>
+    </div>
+    <div class="book-stores"><a class="store-btn" href="https://www.mann-ivanov-ferber.ru/catalog/product/upravlenie-proektami/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> МИФ
+  </a><a class="store-btn" href="https://www.chitai-gorod.ru/product/proektnoe-upravlenie-kak-pravilno-delat-pravilnye-veshchi-3028813" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg> Читай-город
+  </a></div>
+  </article>
+  <article class="book" style="animation-delay:0.2s">
+    <div class="book-top">
+      <span class="book-num">02</span>
+      <div class="book-meta">
+        <div class="book-title">Настольная книга project-менеджера</div>
+        <div class="book-author">Владимир Завертайлов</div>
+        <div class="book-desc">Максимально полный путеводитель по профессии российского project-менеджера. Как управлять IT, digital и другими проектами с учётом специфики российского рынка. Практично, живо и без воды.</div>
+      </div>
+    </div>
+    <div class="book-stores"><a class="store-btn" href="https://books.yandex.ru/books/caNMwizp" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Яндекс Книги
+  </a><a class="store-btn" href="https://www.litres.ru/book/vladimir-zavertaylov/nastolnaya-kniga-project-menedzhera-chto-nuzhno-znat-68007542/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></svg> ЛитРес
+  </a><a class="store-btn" href="https://www.chitai-gorod.ru/product/nastolnaya-kniga-project-menedzhera-chto-nuzhno-znat-chtoby-upravlyat-it-digital-i-drugimi-proektami-s-uchetom-rossiyskih-realiy-2935606" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg> Читай-город
+  </a></div>
+  </article>
+  <article class="book" style="animation-delay:0.30000000000000004s">
+    <div class="book-top">
+      <span class="book-num">03</span>
+      <div class="book-meta">
+        <div class="book-title">Предметно-ориентированное проектирование (DDD)</div>
+        <div class="book-author">Эрик Эванс</div>
+        <div class="book-desc">Структуризация сложных программных систем. Классика архитектуры ПО — как выстроить модель предметной области так, чтобы код отражал реальный бизнес. Must-have для middle+ разработчиков и архитекторов.</div>
+      </div>
+    </div>
+    <div class="book-stores"><a class="store-btn" href="https://market.yandex.ru/card/kniga-dialektika-predmetno-oriyentirovannoye-proyektirovaniye-strukturizatsiya-slozhnykh-programmnykh-sistem-2020-god-e-evans/103638965449?do-waremd5=S0LjYTteEDvMaZni9AfEJw&amp;clid=703" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Яндекс Маркет
+  </a><a class="store-btn" href="https://www.chitai-gorod.ru/catalog/search?phrase=%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%BE+%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%BD%D0%BE%D0%B5+%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5+%D1%8D%D0%B2%D0%B0%D0%BD%D1%81" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg> Читай-город
+  </a><a class="store-btn" href="https://www.labirint.ru/books/512940/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Лабиринт
+  </a></div>
+  </article>
+  <article class="book" style="animation-delay:0.4s">
+    <div class="book-top">
+      <span class="book-num">04</span>
+      <div class="book-meta">
+        <div class="book-title">Непослушное дитя биосферы</div>
+        <div class="book-author">Виктор Дольник</div>
+        <div class="book-desc">Беседы о поведении человека в компании птиц, зверей и детей. Этолог Дольник объясняет с позиции биологии, почему мы ведём себя именно так — агрессия, любовь, власть, иерархия. Занятно и неудобно честно.</div>
+      </div>
+    </div>
+    <div class="book-stores"><a class="store-btn" href="https://www.litres.ru/book/v-r-dolnik/neposlushnoe-ditya-biosfery-besedy-o-povedenii-cheloveka-v-komp-70612609/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></svg> ЛитРес
+  </a><a class="store-btn" href="https://www.chitai-gorod.ru/product/neposlushnoe-ditya-biosfery-besedy-o-povedenii-cheloveka-v-kompanii-ptic-zverey-i-detey-2524830" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg> Читай-город
+  </a><a class="store-btn" href="https://www.labirint.ru/books/623071/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Лабиринт
+  </a></div>
+  </article></div>
+
+  
+  <footer class="footer">
+    <a href="https://imiron.ru">← imiron.ru</a>
+  </footer>
+
+
+</div>
+</body>
+</html>
